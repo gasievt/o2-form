@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-item">Михаил Мингалёв</div>
+                <div class="sidebar-header-item">Покупатель</div>
+                <div class="sidebar-header-smiley">
+                    <img src="assets/smiley.svg" alt="smiely">
+                </div>
+            </div>
+            <div class="sidebar-button"></div>
+        </div>
+        <div class="form-container">
+            <div class="form-header">Мой профиль</div>
+            <div class="form-tabs">
+                <div class="form-tab form-tab-active">Личные данные</div>
+                <div class="form-tab">Адреса доставки</div>
+                <div class="form-tab">Пароль</div>
+            </div>
+            <form class="my-profile-form" action="">
+                <div class="my-profile-form-item">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="my-profile-form-item">
+                    <div class="my-profile-form-item-inner">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="my-profile-form-item-inner">
+                        <label for="phone-additional">Дополнительный номер</label>
+                        <input type="tel" name="phone-additional" required>
+                    </div>
+                </div>
+                <div class="my-profile-form-item">
+                    <label for="second-name">Фамилия</label>
+                    <input type="text" name="second-name">
+                </div>
+                <div class="my-profile-form-item">
+                    <label for="second-name">Имя</label>
+                    <input type="text" name="first-name">
+                </div>
+                <div class="my-profile-form-item">
+                    <label for="second-name">Отчество</label>
+                    <input type="text" name="patronymics">
+                </div>
+                <div class="my-profile-form-item">
+                    <label for="date-of-birth">Дата рождения</label>
+                    <div class="line-break"></div>
+                    <select name="day-of-birth" class="day-of-birth birth-select" data-dropup-auto="false">
+                    </select>
+                    <select name="month-of-birth" class="month-of-birth birth-select">
+                    </select>
+                    <select name="year-of-birth" class="year-of-birth birth-select">
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

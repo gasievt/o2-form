@@ -64,6 +64,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 420px;
+	margin-bottom: 10px;
 }
 .my-profile-form-item input{
     height: 50px;
@@ -90,6 +91,12 @@ body{
     flex-direction: row;
     gap: 10px;
 }
+.my-profile-form-item:nth-child(7){
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+}
 .birth-select{
     width: 120px;
     height: 50px;
@@ -108,7 +115,25 @@ body{
 .year-of-birth-option{
     width: 10px;
 }
-
+.gender-header{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+.gender-button{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #DFE2E4;
+	border-radius: 5px;
+	width: 130px;
+	height: 50px;
+}
+.my-profile-form-submit-button{
+	background: #FF7A00;
+	width: 270px;
+	color: white;
+}
 @font-face {
     font-family: "Roboto";
     src: url("fonts/Roboto-Regular.ttf");

@@ -1,5 +1,4 @@
 'use strict';
-// let date = new Date()
 const MONTH_NUMBER_TO_WORD = {
     0: "Январь",
     1: "Февраль",
@@ -19,30 +18,21 @@ function convertNumberToMonth(number = 0){
         return false;
     return MONTH_NUMBER_TO_WORD[number];
 }
-// function getYear(){
-//     return date.getFullYear();
-// }
-// function getMonth(){
-//     return convertNumberToMonth(date.getMonth());
-// }
-// function getDay(){
-//     return date.getDate();
-// }
-function appendYearPicker(start, end, parentClass){
-    let yearPicker = document.querySelector('.' + parentClass);
+function appendYearPicker(start, end, parentElement){
+    let yearPicker = document.querySelector('.' + parentElement);
     for(let i = start; i <= end; i++){
         let element = document.createElement('option');
-        element.classList.add(`${parentClass}-option`);
+        element.classList.add(`${parentElement}-option`);
         element.innerHTML = i;
         element.setAttribute('value', i);
         yearPicker.appendChild(element);
     }
 }
-function appendMonthPicker(parentClass){
-    let monthPicker = document.querySelector(parentClass);
+function appendMonthPicker(parentElement){
+    let monthPicker = document.querySelector(parentElement);
     Object.keys(MONTH_NUMBER_TO_WORD).forEach(el => {
         let element = document.createElement('option');
-        element.classList.add(`${parentClass}-option`);
+        element.classList.add(`${parentElement}-option`);
         element.innerHTML = el;
     });
 }

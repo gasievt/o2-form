@@ -13,11 +13,11 @@ const MONTH_NUMBER_TO_WORD = {
     10: "Ноябрь",
     11: "Декабрь"
 }
-function convertNumberToMonth(number = 0){
-    if(number>11)
-        return false;
-    return MONTH_NUMBER_TO_WORD[number];
-}
+// function convertNumberToMonth(number = 0){
+//     if(number>11)
+//         return false;
+//     return MONTH_NUMBER_TO_WORD[number];
+// }
 function appendYearPicker(start, end, parentElement){
     let yearPicker = document.querySelector('.' + parentElement);
     for(let i = start; i <= end; i++){
@@ -29,11 +29,18 @@ function appendYearPicker(start, end, parentElement){
     }
 }
 function appendMonthPicker(parentElement){
-    let monthPicker = document.querySelector(parentElement);
+    let monthPicker = document.querySelector('.' + parentElement);
     Object.keys(MONTH_NUMBER_TO_WORD).forEach(el => {
         let element = document.createElement('option');
         element.classList.add(`${parentElement}-option`);
-        element.innerHTML = el;
+        element.innerHTML = MONTH_NUMBER_TO_WORD[el];
+		element.setAttribute('value', el);
+		monthPicker.appendChild(element);
     });
 }
-appendYearPicker(1950, 2050, 'year-of-birth');
+// function appendDayPicker(){
+// 	let dayPicker = document.querySelector('.' + parentElement);
+
+// }
+appendYearPicker(1900, 2050, 'year-of-birth');
+appendMonthPicker('month-of-birth');

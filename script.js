@@ -25,6 +25,7 @@ function appendYearPicker(start, end, parentElement){
         element.classList.add(`${parentElement}-option`);
         element.innerHTML = i;
         element.setAttribute('value', i);
+        element.setAttribute('name', 'year');
         yearPicker.appendChild(element);
     }
 }
@@ -35,8 +36,20 @@ function appendMonthPicker(parentElement){
         element.classList.add(`${parentElement}-option`);
         element.innerHTML = MONTH_NUMBER_TO_WORD[el];
 		element.setAttribute('value', el);
+		element.setAttribute('name', 'month');
 		monthPicker.appendChild(element);
     });
+}
+function appendDayPicker(parentElement){
+	let dayPicker = document.querySelector('.' + parentElement);
+	for(let i = 1; i<=31; i++){
+		let element = document.createElement('option');
+		element.classList.add(`${parentElement}-option`);
+		element.innerHTML = i;
+		element.setAttribute('value', i);
+		element.setAttribute('name', 'day');
+		dayPicker.appendChild(element);
+	}
 }
 // function appendDayPicker(){
 // 	let dayPicker = document.querySelector('.' + parentElement);
@@ -44,3 +57,4 @@ function appendMonthPicker(parentElement){
 // }
 appendYearPicker(1900, 2050, 'year-of-birth');
 appendMonthPicker('month-of-birth');
+appendDayPicker('day-of-birth');

@@ -10,13 +10,22 @@
     <div class="content">
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-header-item">Михаил Мингалёв</div>
-                <div class="sidebar-header-item">Покупатель</div>
-                <div class="sidebar-header-smiley">
+				<div class="sidebar-header-smiley">
                     <img src="assets/smiley.svg" alt="smiley">
                 </div>
+				<div class="sidebar-header-data">
+					<div class="sidebar-header-item">Михаил Мингалёв</div>
+					<div class="sidebar-header-item-lower">Покупатель</div>
+				</div>
             </div>
-            <div class="sidebar-button"></div>
+            <div class="sidebar-buttons">
+				<div class="sidebar-button">Мой профиль</div>
+				<div class="sidebar-button">Statut Club</div>
+				<div class="sidebar-button">Заказы</div>
+				<div class="sidebar-button">Избранные товары</div>
+				<div class="sidebar-button">Отзывы о товарах</div>
+				<div class="sidebar-button">Выход</div>
+			</div>
         </div>
         <div class="form-container">
             <div class="form-header">Мой профиль</div>
@@ -54,8 +63,7 @@
                 </div>
                 <div class="my-profile-form-item">
                     <label for="date-of-birth">Дата рождения</label>
-                    <div class="line-break"></div>
-                    <select name="day-of-birth" class="day-of-birth birth-select" data-dropup-auto="false">
+                    <select name="day-of-birth" class="day-of-birth birth-select">
                     </select>
                     <select name="month-of-birth" class="month-of-birth birth-select">
                     </select>
@@ -64,7 +72,6 @@
                 </div>
 				<div class="my-profile-form-item">
 					<div class="gender-header">Пол</div>
-					<div class="line-break"></div>
 					<div class="gender-button">Мужской</div>
 					<div class="gender-button">Женский</div>
                 </div>

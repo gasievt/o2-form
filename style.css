@@ -178,8 +178,15 @@ s
 .birth-select:hover{
 	cursor: pointer;
 }
+.year-of-birth{
+	padding-left: 10px;
+}
 .month-of-birth{
+	padding-left: 10px;
     width: 160px;
+}
+.day-of-birth{
+	padding-left: 10px;
 }
 .my-profile-form-item-inner{
     display: flex;

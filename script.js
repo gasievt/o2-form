@@ -51,10 +51,6 @@ function appendDayPicker(parentElement){
 		dayPicker.appendChild(element);
 	}
 }
-// function appendDayPicker(){
-// 	let dayPicker = document.querySelector('.' + parentElement);
-
-// }
 appendYearPicker(1900, 2050, 'year-of-birth');
 appendMonthPicker('month-of-birth');
 appendDayPicker('day-of-birth');

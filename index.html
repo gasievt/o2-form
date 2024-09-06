@@ -54,8 +54,8 @@
                     <input type="text" name="second-name">
                 </div>
                 <div class="my-profile-form-item">
-                    <label for="second-name">Имя</label>
-                    <input type="text" name="first-name">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name">
                 </div>
                 <div class="my-profile-form-item">
                     <label for="second-name">Отчество</label>
@@ -72,8 +72,16 @@
                 </div>
 				<div class="my-profile-form-item">
 					<div class="gender-header">Пол</div>
-					<div class="gender-button">Мужской</div>
-					<div class="gender-button">Женский</div>
+					<ul class="gender-buttons">
+						<li>
+							<input type="radio" name="gender1" value="male" class="gender-button">
+							<label for="gender">Мужской</label>
+						</li>
+						<li>
+							<input type="radio" name="gender1" value="female" class="gender-button">
+							<label for="gender">Женский</label>
+						</li>
+					</ul>
                 </div>
 				<div class="my-profile-form-item">
 					<input type="submit" value="Сохранить изменения" class="my-profile-form-submit-button">

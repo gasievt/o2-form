@@ -245,7 +245,8 @@ s
 	vertical-align: middle;
 }
 .gender-buttons input[type="radio"]:checked + label{
-	background: #FC6E1D;
+	border: 1px solid #FC6E1D;
+	color: #FC6E1D;
 }
 .gender-buttons input[type="radio"]{
 	z-index:100;

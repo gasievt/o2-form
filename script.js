@@ -20,7 +20,7 @@ const MONTH_NUMBER_TO_WORD = {
 // }
 function appendYearPicker(start, end, parentElement){
     let yearPicker = document.querySelector('.' + parentElement);
-    for(let i = start; i <= end; i++){
+    for (let i = start; i <= end; i++){
         let element = document.createElement('option');
         element.classList.add(`${parentElement}-option`);
         element.innerHTML = i;
@@ -42,7 +42,7 @@ function appendMonthPicker(parentElement){
 }
 function appendDayPicker(parentElement){
 	let dayPicker = document.querySelector('.' + parentElement);
-	for(let i = 1; i<=31; i++){
+	for (let i = 1; i<=31; i++){
 		let element = document.createElement('option');
 		element.classList.add(`${parentElement}-option`);
 		element.innerHTML = i;
@@ -50,6 +50,22 @@ function appendDayPicker(parentElement){
 		element.setAttribute('name', 'day');
 		dayPicker.appendChild(element);
 	}
+}
+function hideExtraDays(year, month){
+	let daysInMonth = daysInMonth(year, month);
+	let extraDaysNumber = 31 - daysInMonth;
+	for (let i = 0; i <= extraDaysNumber; i++){
+		hideElement('.day-of-birth-option');
+	}
+}
+function daysInMonth (month, year) {
+	return new Date(parseInt(year), parseInt(month) + 1, 0).getDate();
+}
+function hideElement(selector){
+	document.querySelector(selector).style.display = 'none';
+}
+function showElement(selector){
+	document.querySelector(selector).style.display = '';
 }
 appendYearPicker(1900, 2050, 'year-of-birth');
 appendMonthPicker('month-of-birth');

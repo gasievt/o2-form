@@ -13,11 +13,7 @@ const MONTH_NUMBER_TO_WORD = {
     10: "Ноябрь",
     11: "Декабрь"
 }
-// function convertNumberToMonth(number = 0){
-//     if(number>11)
-//         return false;
-//     return MONTH_NUMBER_TO_WORD[number];
-// }
+
 function appendYearPicker(start, end, parentElement){
     let yearPicker = document.querySelector('.' + parentElement);
     for (let i = start; i <= end; i++){
@@ -26,6 +22,7 @@ function appendYearPicker(start, end, parentElement){
         element.innerHTML = i;
         element.setAttribute('value', i);
         element.setAttribute('name', 'year');
+		setPickMonthYearListener(element);
         yearPicker.appendChild(element);
     }
 }
@@ -37,6 +34,7 @@ function appendMonthPicker(parentElement){
         element.innerHTML = MONTH_NUMBER_TO_WORD[el];
 		element.setAttribute('value', el);
 		element.setAttribute('name', 'month');
+		setPickMonthYearListener(element);
 		monthPicker.appendChild(element);
     });
 }
@@ -51,22 +49,35 @@ function appendDayPicker(parentElement){
 		dayPicker.appendChild(element);
 	}
 }
+function setPickMonthYearListener(element){
+	element.addEventListener('click', ()=>{
+		showDays(document.getElementsByName('year-of-birth').item(0).value, document.getElementsByName('month-of-birth').item(0).value)
+	});
+}
+function showDays(year, month){
+	hideExtraDays(year, month);
+	showMissingDays(year, month);
+}
 function hideExtraDays(year, month){
-	let daysInMonth = daysInMonth(year, month);
-	let extraDaysNumber = 31 - daysInMonth;
-	for (let i = 0; i <= extraDaysNumber; i++){
-		hideElement('.day-of-birth-option');
+	let daysInMonthNumber = daysInMonth(year, month);
+	let extraDays = document.querySelectorAll('.day-of-birth-option');
+	for (let i = 30; i >= daysInMonthNumber; i--){
+		if (extraDays.item(i).classList.contains('day-of-birth-hidden'))
+			continue;
+		extraDays.item(i).classList.add('day-of-birth-hidden'); 
 	}
 }
-function daysInMonth (month, year) {
+function showMissingDays(year, month){
+	let hiddenDays = document.querySelectorAll('.day-of-birth-hidden');
+	for (let i = 0; i < hiddenDays.length; i++){
+		hiddenDays.item(i).classList.remove('day-of-birth-hidden');
+	}
+	hideExtraDays(year, month);	
+}
+function daysInMonth (year, month) {
 	return new Date(parseInt(year), parseInt(month) + 1, 0).getDate();
-}
-function hideElement(selector){
-	document.querySelector(selector).style.display = 'none';
-}
-function showElement(selector){
-	document.querySelector(selector).style.display = '';
 }
 appendYearPicker(1900, 2050, 'year-of-birth');
 appendMonthPicker('month-of-birth');
-appendDayPicker('day-of-birth');
+appendDayPicker('day-of-birth',);
+hideExtraDays(1900, 0);

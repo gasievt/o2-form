@@ -188,6 +188,9 @@ s
 .day-of-birth{
 	padding-left: 10px;
 }
+.day-of-birth-hidden{
+	display: none;
+}
 .my-profile-form-item-inner{
     display: flex;
     width: 205px;

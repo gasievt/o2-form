@@ -22,7 +22,7 @@ function appendYearPicker(start, end, parentElement){
         element.innerHTML = i;
         element.setAttribute('value', i);
         element.setAttribute('name', 'year');
-		setPickMonthYearListener(element);
+		setMonthYearPickListener(element);
         yearPicker.appendChild(element);
     }
 }
@@ -34,7 +34,7 @@ function appendMonthPicker(parentElement){
         element.innerHTML = MONTH_NUMBER_TO_WORD[el];
 		element.setAttribute('value', el);
 		element.setAttribute('name', 'month');
-		setPickMonthYearListener(element);
+		setMonthYearPickListener(element);
 		monthPicker.appendChild(element);
     });
 }
@@ -49,9 +49,10 @@ function appendDayPicker(parentElement){
 		dayPicker.appendChild(element);
 	}
 }
-function setPickMonthYearListener(element){
+function setMonthYearPickListener(element){
 	element.addEventListener('click', ()=>{
-		showDays(document.getElementsByName('year-of-birth').item(0).value, document.getElementsByName('month-of-birth').item(0).value)
+		showDays(document.getElementsByName('year-of-birth').item(0).value, 
+		document.getElementsByName('month-of-birth').item(0).value)
 	});
 }
 function showDays(year, month){

@@ -34,7 +34,7 @@
                 <div class="form-tab">Адреса доставки</div>
                 <div class="form-tab">Пароль</div>
             </div>
-            <form class="my-profile-form" action="form.php" method="POST">
+            <form class="my-profile-form" action="form.php" method="POST" onsubmit="sendForm(this, event)">
                 <div class="my-profile-form-item">
                     <label for="email">E-mail</label>
                     <input type="email" name="email" required>
@@ -51,11 +51,11 @@
                 </div>
                 <div class="my-profile-form-item">
                     <label for="second-name">Фамилия</label>
-                    <input type="text" name="second-name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('Только русские символы')" pattern="[а-яА-я]" required>
+                    <input type="text" name="second-name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('От 2 до 16 символов')"  required>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="name">Имя</label>
-                    <input type="text" name="name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('Только русские символы')" pattern="[а-яА-я]{1,16}" required>
+                    <input type="text" name="name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('От 2 до 16 символов')" required>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="patronymics">Отчество</label>

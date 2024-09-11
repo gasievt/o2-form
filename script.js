@@ -78,6 +78,12 @@ function showMissingDays(year, month){
 function daysInMonth (year, month) {
 	return new Date(parseInt(year), parseInt(month) + 1, 0).getDate();
 }
+async function sendForm(form, e){
+	e.preventDefault();
+	console.log(form);
+	let formdata = new FormData(form);
+	console.log(JSON.stringify(Object.fromEntries(formdata)));
+}
 appendYearPicker(1900, 2050, 'year-of-birth');
 appendMonthPicker('month-of-birth');
 appendDayPicker('day-of-birth',);

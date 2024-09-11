@@ -13,7 +13,6 @@ const MONTH_NUMBER_TO_WORD = {
     10: "Ноябрь",
     11: "Декабрь"
 }
-
 function appendYearPicker(start, end, parentElement){
     let yearPicker = document.querySelector('.' + parentElement);
     for (let i = start; i <= end; i++){
@@ -78,11 +77,18 @@ function showMissingDays(year, month){
 function daysInMonth (year, month) {
 	return new Date(parseInt(year), parseInt(month) + 1, 0).getDate();
 }
-async function sendForm(form, e){
+function sendForm(form, e){
 	e.preventDefault();
 	console.log(form);
 	let formdata = new FormData(form);
-	console.log(JSON.stringify(Object.fromEntries(formdata)));
+	let jsonForm = JSON.stringify(Object.fromEntries(formdata));
+	fetch('./form.php', {
+		method: 'POST',
+		body: jsonForm,
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
 }
 appendYearPicker(1900, 2050, 'year-of-birth');
 appendMonthPicker('month-of-birth');

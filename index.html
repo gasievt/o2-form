@@ -34,7 +34,7 @@
                 <div class="form-tab">Адреса доставки</div>
                 <div class="form-tab">Пароль</div>
             </div>
-            <form class="my-profile-form" action="form.php" method="POST" onsubmit="sendForm(this, event)">
+            <form class="my-profile-form" onsubmit="sendForm(this, event)">
                 <div class="my-profile-form-item">
                     <label for="email">E-mail</label>
                     <input type="email" name="email" required>
@@ -42,11 +42,11 @@
                 <div class="my-profile-form-item">
                     <div class="my-profile-form-item-inner">
                         <label for="phone">Телефон</label>
-                        <input type="tel" name="phone" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9}|8[0-9]{10})" required>
+                        <input type="tel" name="phone" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9})" required>
                     </div>
                     <div class="my-profile-form-item-inner">
                         <label for="phone-additional">Дополнительный номер</label>
-                        <input type="tel" name="phone-additional" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9}|8[0-9]{10})">
+                        <input type="tel" name="phone-additional" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9})">
                     </div>
                 </div>
                 <div class="my-profile-form-item">

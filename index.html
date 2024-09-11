@@ -34,31 +34,31 @@
                 <div class="form-tab">Адреса доставки</div>
                 <div class="form-tab">Пароль</div>
             </div>
-            <form class="my-profile-form" action="">
+            <form class="my-profile-form" action="form.php" method="POST">
                 <div class="my-profile-form-item">
                     <label for="email">E-mail</label>
                     <input type="email" name="email" required>
-                </div>
+                </div>	
                 <div class="my-profile-form-item">
                     <div class="my-profile-form-item-inner">
                         <label for="phone">Телефон</label>
-                        <input type="tel" name="phone" required>
+                        <input type="tel" name="phone" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9}|8[0-9]{10})" required>
                     </div>
                     <div class="my-profile-form-item-inner">
                         <label for="phone-additional">Дополнительный номер</label>
-                        <input type="tel" name="phone-additional" required>
+                        <input type="tel" name="phone-additional" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9}|8[0-9]{10})">
                     </div>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="second-name">Фамилия</label>
-                    <input type="text" name="second-name">
+                    <input type="text" name="second-name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('Только русские символы')" pattern="[а-яА-я]" required>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="name">Имя</label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('Только русские символы')" pattern="[а-яА-я]{1,16}" required>
                 </div>
                 <div class="my-profile-form-item">
-                    <label for="second-name">Отчество</label>
+                    <label for="patronymics">Отчество</label>
                     <input type="text" name="patronymics">
                 </div>
                 <div class="my-profile-form-item">
@@ -74,7 +74,7 @@
 					<div class="gender-header">Пол</div>
 					<ul class="gender-buttons">
 						<li>
-							<input type="radio" name="gender" value="male" class="gender-button">
+							<input type="radio" name="gender" value="male" class="gender-button" checked="checked">
 							<label for="gender">Мужской</label>
 						</li>
 						<li>

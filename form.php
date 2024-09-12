@@ -16,6 +16,13 @@ $formDataRequest = json_decode(file_get_contents('php://input'), true);
 if (isSameArrays(array_keys($formData), array_keys($formDataRequest))){
 	$errors = array_keys($formDataRequest, null);
 }
+$errors = array_flip($errors);
+foreach($errors as $key => &$el){
+	if($key === 'phone-additional' || $key === 'patronymics'){
+		unset($errors[$key]);
+	}
+	$el = 'Это поле обязательное для заполнения.';
+}
 file_put_contents('test.txt', print_r($errors, true), FILE_APPEND);
 function isSameArrays($a, $b){
    sort($a);

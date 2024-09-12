@@ -42,20 +42,20 @@
                 <div class="my-profile-form-item">
                     <div class="my-profile-form-item-inner">
                         <label for="phone">Телефон</label>
-                        <input type="tel" name="phone" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9})" required>
+                        <input type="tel" name="phone" maxlength="12" pattern="(\+79[0-9]{9})" required>
                     </div>
                     <div class="my-profile-form-item-inner">
                         <label for="phone-additional">Дополнительный номер</label>
-                        <input type="tel" name="phone-additional" oninvalid="this.setCustomValidity('Номер телефона должен быть в формате +79XXXXXXXXX')" maxlength="12" pattern="(\+79[0-9]{9})">
+                        <input type="tel" name="phone-additional"  maxlength="12" pattern="(\+79[0-9]{9})">
                     </div>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="second-name">Фамилия</label>
-                    <input type="text" name="second-name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('От 2 до 16 символов')"  required>
+                    <input type="text" name="second-name" maxlength="16" minlength="2" required>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="name">Имя</label>
-                    <input type="text" name="name" maxlength="16" minlength="2" oninvalid="this.setCustomValidity('От 2 до 16 символов')" required>
+                    <input type="text" name="name" maxlength="16" minlength="2" required>
                 </div>
                 <div class="my-profile-form-item">
                     <label for="patronymics">Отчество</label>

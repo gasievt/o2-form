@@ -13,7 +13,7 @@ const FORM_DATA = [
 ];
 $errors = [];
 $formDataRequest = json_decode(file_get_contents('php://input'), true);
-if(json_last_error()){
+if (json_last_error()){
 	$errors['json'] = json_last_error_msg();
 	echo json_encode(['success' => 'false', 'errors' => $errors]);
 	sendMail($formDataRequest['mail'], 'test', json_encode(['success' => 'false', 'errors' => $errors]));
@@ -22,34 +22,38 @@ if(json_last_error()){
 if (!isSameArrays(array_keys(FORM_DATA), array_keys($formDataRequest))){
 	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));
 	$errors = array_flip($errors);
-	foreach($errors as &$el){
+	foreach ($errors as &$el)
 		$el = 'Это поле обязательно для заполнения.';
-	}
 }
 else {
 	$errors = array_keys($formDataRequest, null);
 	$errors = array_flip($errors);
 	foreach ($errors as $key => &$el){
-		if($key === 'phone-additional' || $key === 'patronymics'){
+		if ($key === 'phone-additional' || $key === 'patronymics')
 			unset($errors[$key]);
-		}
 	$el = 'Это поле обязательное для заполнения.';
 	}
 }
 array_walk($formDataRequest, function(&$el){
 	$el = trim(strip_tags($el));
 });
-if (count($errors) > 0)
-	echo json_encode(['success' => 'false', 'errors' => $errors]);
-else
-	echo json_encode(['success' => 'true']);
+if (count($errors) > 0){
+	$response = json_encode(['success' => 'false', 'errors' => $errors]);
+	echo $response;
+	sendMail($formDataRequest['email'], 'test', $response);
+}
+else {
+	$response = json_encode(['success' => 'true']); 
+	echo $response;
+	sendMail($formDataRequest['email'], 'test', $response);
+}
 function isSameArrays($a, $b){
    sort($a);
    sort($b);
    return $a == $b;
 }
 function sendMail($to, $subject, $message){
-	if(!$to){
+	if (!$to){
 		return;
 	}
 	mail($to, $subject, $message);

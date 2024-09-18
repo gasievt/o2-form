@@ -23,7 +23,7 @@ array_walk($formDataRequest, function(&$el){
 	$el = trim(strip_tags($el));
 });
 if (!isSameArrays(array_keys(FORM_DATA), array_keys($formDataRequest))){
-	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));	
+	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));
 	$errors = array_flip($errors);
 	foreach ($errors as &$el)
 		$el = 'Это поле обязательно для заполнения.';
@@ -48,7 +48,6 @@ foreach($formDataRequest as $key => $el){
 		if(!$validEmail)
 			$errors['email'] = 'Введите корректный email';
 }
-file_put_contents('test.txt', print_r($errors, 	true), FILE_APPEND);
 if (count($errors) > 0){
 	$response = json_encode(['success' => 'false', 'errors' => $errors]);
 	echo $response;

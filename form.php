@@ -19,11 +19,15 @@ if (json_last_error()){
 	sendMail($formDataRequest['mail'], 'test', json_encode(['success' => 'false', 'errors' => $errors]));
 	exit();
 }
+array_walk($formDataRequest, function(&$el){
+	$el = trim(strip_tags($el));
+});
 if (!isSameArrays(array_keys(FORM_DATA), array_keys($formDataRequest))){
-	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));
+	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));	
 	$errors = array_flip($errors);
 	foreach ($errors as &$el)
 		$el = 'Это поле обязательно для заполнения.';
+	unset($el);
 }
 else {
 	$errors = array_keys($formDataRequest, null);
@@ -34,9 +38,17 @@ else {
 	$el = 'Это поле обязательное для заполнения.';
 	}
 }
-array_walk($formDataRequest, function(&$el){
-	$el = trim(strip_tags($el));
-});
+foreach($formDataRequest as $key => $el){
+	if ($key === 'phone' && strlen($el) !== 12)
+		$errors['phone'] = 'Введите корректный номер телефона';
+	if ($key === 'phone-additional' && strlen($el) !== 12 && !empty($el))
+		$errors['phone-additional'] = 'Введите корректный номер телефона';
+	if ($key === 'email')
+		$validEmail = filter_var($el, FILTER_VALIDATE_EMAIL);
+		if(!$validEmail)
+			$errors['email'] = 'Введите корректный email';
+}
+file_put_contents('test.txt', print_r($errors, 	true), FILE_APPEND);
 if (count($errors) > 0){
 	$response = json_encode(['success' => 'false', 'errors' => $errors]);
 	echo $response;

@@ -14,12 +14,19 @@ const FORM_DATA = [
 $errors = [];
 $formDataRequest = json_decode(file_get_contents('php://input'), true);
 if(json_last_error()){
-	$errors['json'] = 'bad json';
+	$errors['json'] = json_last_error_msg();
 	echo json_encode(['success' => 'false', 'errors' => $errors]);
 	sendMail($formDataRequest['mail'], 'test', json_encode(['success' => 'false', 'errors' => $errors]));
 	exit();
 }
-if (isSameArrays(array_keys(FORM_DATA), array_keys($formDataRequest))){
+if (!isSameArrays(array_keys(FORM_DATA), array_keys($formDataRequest))){
+	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));
+	$errors = array_flip($errors);
+	foreach($errors as &$el){
+		$el = 'Это поле обязательно для заполнения.';
+	}
+}
+else {
 	$errors = array_keys($formDataRequest, null);
 	$errors = array_flip($errors);
 	foreach ($errors as $key => &$el){
@@ -27,30 +34,22 @@ if (isSameArrays(array_keys(FORM_DATA), array_keys($formDataRequest))){
 			unset($errors[$key]);
 		}
 	$el = 'Это поле обязательное для заполнения.';
-	} 
-}
-else {
-	$errors = array_diff(array_keys(FORM_DATA), array_keys($formDataRequest));
-	$errors = array_flip($errors);
-	foreach($errors as &$el){
-		$el = 'Это поле обязательно для заполнения.';
 	}
-	echo json_encode(['success' => 'false', 'errors' => $errors]);
-	sendMail($formDataRequest['mail'], 'test', json_encode(['success' => 'false', 'errors' => $errors]));
-	exit();
 }
 array_walk($formDataRequest, function(&$el){
 	$el = trim(strip_tags($el));
 });
-echo json_encode(['success' => 'true']);
-sendMail($formDataRequest['mail'], 'test', json_encode(['success' => 'false', 'errors' => $errors]));
+if (count($errors) > 0)
+	echo json_encode(['success' => 'false', 'errors' => $errors]);
+else
+	echo json_encode(['success' => 'true']);
 function isSameArrays($a, $b){
    sort($a);
    sort($b);
    return $a == $b;
 }
-function sendMail($to = false, $subject = 'test', $message){
-	if($to){
+function sendMail($to, $subject, $message){
+	if(!$to){
 		return;
 	}
 	mail($to, $subject, $message);
